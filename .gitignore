@@ -1,2 +1,3 @@
 .idea/*
 bfs/__pycache__/*
+*__pycache__*

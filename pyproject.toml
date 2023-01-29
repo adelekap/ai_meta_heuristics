@@ -8,6 +8,7 @@ packages = [{include = "ai_meta_heuristics"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+bs4 = "^0.0.1"
 
 
 [build-system]
