@@ -28,3 +28,5 @@ class MazeSolver:
 
         if path[-1] != self.goal:
             raise UnsolvableMazeException()
+
+        return path
