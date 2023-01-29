@@ -1,5 +1,6 @@
 from typing import List
 
+from dfs.maze_solver.maze_exception import UnsolvableMazeException
 from dfs.maze_solver.maze_location import MazeLocation
 
 
@@ -23,30 +24,7 @@ class MazeSolver:
                 return path
 
     def solve(self):
-        return self._search([self.starting_location])
+        path = self._search([self.starting_location])
 
-
-if __name__ == '__main__':
-    l_0_0 = MazeLocation(0, 0, True)
-    l_0_1 = MazeLocation(0, 1, True)
-    l_0_2 = MazeLocation(0, 2, True)
-    l_1_0 = MazeLocation(1, 0, True)
-    l_1_1 = MazeLocation(1, 1, False)
-    l_1_2 = MazeLocation(1, 2, False)
-    l_2_0 = MazeLocation(2, 0, True)
-    l_2_1 = MazeLocation(2, 1, True)
-    l_2_2 = MazeLocation(2, 2, True)
-
-    l_0_0.adjacent_locations = [l_1_0, l_0_1]
-    l_0_1.adjacent_locations = [l_0_0, l_0_2, l_1_1]
-    l_0_2.adjacent_locations = [l_0_1, l_1_2]
-    l_1_0.adjacent_locations = [l_0_0, l_1_1, l_2_0]
-    l_1_1.adjacent_locations = [l_0_1, l_1_0, l_1_2, l_2_1]
-    l_1_2.adjacent_locations = [l_0_2, l_1_1, l_2_2]
-    l_2_0.adjacent_locations = [l_1_0, l_2_1]
-    l_2_1.adjacent_locations = [l_2_0, l_1_1, l_2_2]
-    l_2_2.adjacent_locations = [l_2_1, l_1_2]
-
-    solver = MazeSolver(l_0_0, l_2_2)
-
-    print(f'solution: {solver.solve()}')
+        if path[-1] != self.goal:
+            raise UnsolvableMazeException()
