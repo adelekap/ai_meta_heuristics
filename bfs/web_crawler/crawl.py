@@ -26,7 +26,7 @@ def _find_all_links(html: str) -> List[str]:
     return links
 
 
-def make_web_page(url: str, depth: int) -> Optional[WebPage]:
+def crawl_web_page(url: str, depth: int) -> Optional[WebPage]:
     node = WebPage(url)
 
     if depth:
@@ -36,7 +36,7 @@ def make_web_page(url: str, depth: int) -> Optional[WebPage]:
             links = _find_all_links(html)
 
             for link in links:
-                child_node = make_web_page(link, depth - 1)
+                child_node = crawl_web_page(link, depth - 1)
 
                 if child_node:
                     print(link)
@@ -51,5 +51,4 @@ def make_web_page(url: str, depth: int) -> Optional[WebPage]:
 if __name__ == '__main__':
     START_POINT = 'https://azdot.gov/'
 
-    web = make_web_page(START_POINT, depth=2)
-    print()
+    web = crawl_web_page(START_POINT, depth=2)
