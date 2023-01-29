@@ -7,7 +7,7 @@ def depth_first_search_iterative(starting_node: Node):
     while stack:
         visiting_node = stack.pop(-1)
         visiting_node.visited = True
-        print(visiting_node.name)
+        print(f'searched {visiting_node.name}')
 
         for neighbor in visiting_node.adjacent_nodes:
             if not neighbor.visited:
